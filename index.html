@@ -6,28 +6,54 @@
 <title>Vanshita ❤️</title>
 
 <style>
+/* ===== BACKGROUND SLIDESHOW ===== */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  animation:bgSlide 24s infinite;
+  filter:blur(7px) brightness(0.55);
+  z-index:-2;
+}
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.3);
+  z-index:-1;
+}
+
+@keyframes bgSlide{
+  0%{background-image:url("‎‎d9d4e576-d043-42e0-9119-72afa585348f.png)}‎
+  33%{background-image:url("‎ChatGPT Image Apr 2, 2025, 09_29_39 AM.png‎)}
+  66%{background-image:url("‎d9d4e576-d043-42e0-9119-72afa585348f.png‎)}
+  100%{background-image:url("‎ChatGPT Image Apr 2, 2025, 09_29_39 AM.png‎)}
+}
+
+/* ===== PAGE STYLE ===== */
 body{
   margin:0;
   height:100vh;
-  background:linear-gradient(135deg,#ff5f9e,#ffc371);
   font-family:'Segoe UI',sans-serif;
-  overflow:hidden;
   display:flex;
   justify-content:center;
   align-items:center;
+  overflow:hidden;
   color:white;
   text-align:center;
 }
 
 .card{
-  background:rgba(255,255,255,0.18);
+  background:rgba(255,255,255,0.22);
+  backdrop-filter:blur(14px);
   padding:30px;
   border-radius:22px;
   max-width:360px;
-  backdrop-filter:blur(12px);
-  box-shadow:0 25px 50px rgba(0,0,0,.25);
-  position:relative;
+  box-shadow:0 25px 50px rgba(0,0,0,0.3);
   animation:pop 1s ease;
+  position:relative;
 }
 
 @keyframes pop{
@@ -111,6 +137,7 @@ button{
 </audio>
 
 <script>
+/* ===== LOVE MESSAGES ===== */
 const messages=[
  "Vanshita, you’re my favorite thought 💭❤️",
  "You make my days brighter ☀️",
@@ -125,16 +152,19 @@ function newMessage(){
  messages[Math.floor(Math.random()*messages.length)];
 }
 
+/* ===== NO BUTTON RUN ===== */
 function runAway(){
  const noBtn=document.getElementById("noBtn");
  const card=document.querySelector(".card");
  const sound=document.getElementById("noSound");
- sound.currentTime=0; sound.play();
+ sound.currentTime=0;
+ sound.play();
  noBtn.style.left=Math.random()*(card.offsetWidth-80)+"px";
  noBtn.style.top=Math.random()*(card.offsetHeight-40)+"px";
  document.getElementById("message").innerText="Nice try 😜";
 }
 
+/* ===== YES SCREEN ===== */
 function valentine(){
  document.body.innerHTML=`
  <div style="text-align:center;padding:40px">
@@ -147,9 +177,10 @@ function valentine(){
    Forever yours,<br><strong>Vikash ❤️</strong>
   </p>
  </div>`;
- for(let i=0;i<60;i++) setTimeout(createHeart,i*50);
+ for(let i=0;i<70;i++) setTimeout(createHeart,i*40);
 }
 
+/* ===== HEARTS ===== */
 function createHeart(){
  const h=document.createElement("div");
  h.className="heart";
@@ -161,25 +192,34 @@ function createHeart(){
 }
 setInterval(createHeart,300);
 
+/* ===== SECRET ===== */
 function revealSecret(){
  document.getElementById("secret").style.display="block";
 }
 
+/* ===== DAY COUNTER ===== */
 const startDate=new Date("2024-01-01"); // CHANGE DATE
 setInterval(()=>{
  const d=Math.floor((new Date()-startDate)/(1000*60*60*24));
  document.getElementById("counter").innerText=`❤️ ${d} days of knowing you`;
 },1000);
 
+/* ===== MUSIC ===== */
 const music=document.getElementById("bgMusic");
 const musicBtn=document.getElementById("musicBtn");
 let playing=false;
 musicBtn.onclick=()=>{
- if(!playing){music.play();musicBtn.innerText="⏸ Music Off";}
- else{music.pause();musicBtn.innerText="🎵 Music On";}
+ if(!playing){
+   music.play();
+   musicBtn.innerText="⏸ Music Off";
+ }else{
+   music.pause();
+   musicBtn.innerText="🎵 Music On";
+ }
  playing=!playing;
 };
 </script>
 
 </body>
 </html>
+

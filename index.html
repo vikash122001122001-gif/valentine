@@ -1,197 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vanshita ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vanshita ❤️</title>
 
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(135deg, #ff5f9e, #ffc371);
-      font-family: 'Segoe UI', sans-serif;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-align: center;
-    }
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:linear-gradient(135deg,#ff5f9e,#ffc371);
+  font-family:'Segoe UI',sans-serif;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  text-align:center;
+}
 
-    .card {
-      background: rgba(255, 255, 255, 0.18);
-      padding: 35px 25px;
-      border-radius: 22px;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-      max-width: 360px;
-      backdrop-filter: blur(12px);
-      animation: pop 1s ease;
-      position: relative;
-    }
+.card{
+  background:rgba(255,255,255,0.18);
+  padding:30px;
+  border-radius:22px;
+  max-width:360px;
+  backdrop-filter:blur(12px);
+  box-shadow:0 25px 50px rgba(0,0,0,.25);
+  position:relative;
+  animation:pop 1s ease;
+}
 
-    @keyframes pop {
-      from { transform: scale(0.85); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
+@keyframes pop{
+  from{transform:scale(.85);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
 
-    h1 {
-      font-size: 30px;
-      margin-bottom: 10px;
-    }
+h1{font-size:30px;margin-bottom:8px}
+p{font-size:18px;min-height:60px}
 
-    p {
-      font-size: 18px;
-      min-height: 65px;
-      line-height: 1.4;
-    }
+button{
+  padding:12px 22px;
+  border:none;
+  border-radius:30px;
+  background:white;
+  color:#ff3f7f;
+  font-size:15px;
+  cursor:pointer;
+  margin-top:8px;
+}
 
-    button {
-      padding: 12px 22px;
-      border: none;
-      border-radius: 30px;
-      background: white;
-      color: #ff3f7f;
-      font-size: 16px;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-      position: absolute;
-    }
+.buttons{
+  position:relative;
+  height:80px;
+  margin-top:10px;
+}
 
-    button:hover {
-      transform: scale(1.1);
-    }
+#yesBtn{position:absolute;left:15%;bottom:0}
+#noBtn{position:absolute;right:15%;bottom:0}
 
-    .tap-btn {
-      position: static;
-      margin-top: 10px;
-    }
+.heart{
+  position:absolute;
+  font-size:20px;
+  animation:float 6s linear infinite;
+}
 
-    .buttons {
-      margin-top: 20px;
-      position: relative;
-      height: 90px;
-    }
+@keyframes float{
+  from{transform:translateY(110vh);opacity:1}
+  to{transform:translateY(-10vh);opacity:0}
+}
 
-    #yesBtn {
-      left: 15%;
-      bottom: 0;
-    }
-
-    #noBtn {
-      right: 15%;
-      bottom: 0;
-    }
-
-    .heart {
-      position: absolute;
-      color: rgba(255,255,255,0.8);
-      font-size: 20px;
-      animation: float 6s linear infinite;
-    }
-
-    @keyframes float {
-      from {
-        transform: translateY(110vh) scale(1);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-10vh) scale(1.6);
-        opacity: 0;
-      }
-    }
-  </style>
+#musicBtn{
+  position:fixed;
+  bottom:15px;
+  right:15px;
+  z-index:999;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="card">
-    <h1>Vanshita ❤️</h1>
-    <p id="message">I made this little corner of the internet just for you.</p>
+<div class="card">
+  <h1>Vanshita ❤️</h1>
 
-    <button class="tap-btn" onclick="newMessage()">Tap for Love 💕</button>
+  <p id="message">I made this little corner of the internet just for you.</p>
 
-    <div class="buttons">
-      <button id="yesBtn" onclick="valentine()">YES 💖</button>
-      <button id="noBtn" onmouseover="runAway()">NO 🙈</button>
-    </div>
+  <button onclick="newMessage()">Tap for Love 💕</button>
+
+  <div class="buttons">
+    <button id="yesBtn" onclick="valentine()">YES 💖</button>
+    <button id="noBtn" onmouseover="runAway()">NO 🙈</button>
   </div>
 
-  <!-- Sound -->
-  <audio id="noSound">
-    <source src="https://www.myinstants.com/media/sounds/cartoon-nope-sound.mp3" type="audio/mpeg">
-  </audio>
+  <p id="counter"></p>
 
-  <script>
-    const messages = [
-      "Vanshita, you’re my favorite thought every day 💭❤️",
-      "If smiles were stars, you’d be my entire sky ✨",
-      "I still get butterflies because of you 🦋",
-      "Every love song makes sense because of you 🎶💖",
-      "You make ordinary days feel special 😌",
-      "I’m really lucky to have you ❤️"
-    ];
+  <button onclick="revealSecret()">💌 Tap for Secret</button>
+  <p id="secret" style="display:none">
+    P.S. Vanshita — no matter what happens, I’ll always choose you ❤️
+  </p>
+</div>
 
-    function newMessage() {
-      const msg = messages[Math.floor(Math.random() * messages.length)];
-      document.getElementById("message").innerText = msg;
-    }
+<button id="musicBtn">🎵 Music On</button>
 
-    function runAway() {
-      const noBtn = document.getElementById("noBtn");
-      const card = document.querySelector(".card");
-      const sound = document.getElementById("noSound");
+<audio id="bgMusic" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3">
+</audio>
 
-      sound.currentTime = 0;
-      sound.play();
+<audio id="noSound">
+  <source src="https://www.myinstants.com/media/sounds/cartoon-nope-sound.mp3">
+</audio>
 
-      const maxX = card.offsetWidth - noBtn.offsetWidth;
-      const maxY = card.offsetHeight - noBtn.offsetHeight;
+<script>
+const messages=[
+ "Vanshita, you’re my favorite thought 💭❤️",
+ "You make my days brighter ☀️",
+ "I still get butterflies because of you 🦋",
+ "Every love song reminds me of you 🎶",
+ "You feel like home 😌",
+ "I’m lucky to have you ❤️"
+];
 
-      const randomX = Math.random() * maxX;
-      const randomY = Math.random() * maxY;
+function newMessage(){
+ document.getElementById("message").innerText=
+ messages[Math.floor(Math.random()*messages.length)];
+}
 
-      noBtn.style.left = randomX + "px";
-      noBtn.style.top = randomY + "px";
-    }
+function runAway(){
+ const noBtn=document.getElementById("noBtn");
+ const card=document.querySelector(".card");
+ const sound=document.getElementById("noSound");
+ sound.currentTime=0; sound.play();
+ noBtn.style.left=Math.random()*(card.offsetWidth-80)+"px";
+ noBtn.style.top=Math.random()*(card.offsetHeight-40)+"px";
+ document.getElementById("message").innerText="Nice try 😜";
+}
 
-    function valentine() {
-      document.body.innerHTML = `
-        <div style="
-          text-align:center;
-          color:white;
-          padding:40px;
-          animation: pop 1s ease;
-        ">
-          <h1 style="font-size:42px;">She Said YES 💖</h1>
+function valentine(){
+ document.body.innerHTML=`
+ <div style="text-align:center;padding:40px">
+  <h1 style="font-size:44px">She Said YES 💖</h1>
+  <p style="font-size:22px">
+   Vanshita, you made my heart very happy ❤️<br>
+   Every day feels special with you.
+  </p>
+  <p style="font-size:20px;margin-top:25px">
+   Forever yours,<br><strong>Vikash ❤️</strong>
+  </p>
+ </div>`;
+ for(let i=0;i<60;i++) setTimeout(createHeart,i*50);
+}
 
-          <p style="font-size:22px; line-height:1.6;">
-            Vanshita, you just made my heart very happy ❤️<br/>
-            Every day feels special with you.
-          </p>
+function createHeart(){
+ const h=document.createElement("div");
+ h.className="heart";
+ h.innerHTML="❤️";
+ h.style.left=Math.random()*100+"vw";
+ h.style.fontSize=Math.random()*20+15+"px";
+ document.body.appendChild(h);
+ setTimeout(()=>h.remove(),6000);
+}
+setInterval(createHeart,300);
 
-          <p style="font-size:20px; margin-top:30px;">
-            Forever yours,<br/>
-            <strong>Vikash ❤️</strong>
-          </p>
-        </div>
-      `;
-    }
+function revealSecret(){
+ document.getElementById("secret").style.display="block";
+}
 
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.classList.add("heart");
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 22 + 14 + "px";
-      heart.style.animationDuration = Math.random() * 3 + 4 + "s";
-      document.body.appendChild(heart);
+const startDate=new Date("2024-01-01"); // CHANGE DATE
+setInterval(()=>{
+ const d=Math.floor((new Date()-startDate)/(1000*60*60*24));
+ document.getElementById("counter").innerText=`❤️ ${d} days of knowing you`;
+},1000);
 
-      setTimeout(() => heart.remove(), 6000);
-    }
-
-    setInterval(createHeart, 280);
-  </script>
+const music=document.getElementById("bgMusic");
+const musicBtn=document.getElementById("musicBtn");
+let playing=false;
+musicBtn.onclick=()=>{
+ if(!playing){music.play();musicBtn.innerText="⏸ Music Off";}
+ else{music.pause();musicBtn.innerText="🎵 Music On";}
+ playing=!playing;
+};
+</script>
 
 </body>
 </html>

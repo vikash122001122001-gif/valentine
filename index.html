@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vanshita ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff5f9e, #ffc371);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.18);
+      padding: 35px 25px;
+      border-radius: 22px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+      max-width: 360px;
+      backdrop-filter: blur(12px);
+      animation: pop 1s ease;
+      position: relative;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      min-height: 65px;
+      line-height: 1.4;
+    }
+
+    button {
+      padding: 12px 22px;
+      border: none;
+      border-radius: 30px;
+      background: white;
+      color: #ff3f7f;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      position: absolute;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    .tap-btn {
+      position: static;
+      margin-top: 10px;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      position: relative;
+      height: 90px;
+    }
+
+    #yesBtn {
+      left: 15%;
+      bottom: 0;
+    }
+
+    #noBtn {
+      right: 15%;
+      bottom: 0;
+    }
+
+    .heart {
+      position: absolute;
+      color: rgba(255,255,255,0.8);
+      font-size: 20px;
+      animation: float 6s linear infinite;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(110vh) scale(1);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-10vh) scale(1.6);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>Vanshita ❤️</h1>
+    <p id="message">I made this little corner of the internet just for you.</p>
+
+    <button class="tap-btn" onclick="newMessage()">Tap for Love 💕</button>
+
+    <div class="buttons">
+      <button id="yesBtn" onclick="valentine()">YES 💖</button>
+      <button id="noBtn" onmouseover="runAway()">NO 🙈</button>
+    </div>
+  </div>
+
+  <!-- Sound -->
+  <audio id="noSound">
+    <source src="https://www.myinstants.com/media/sounds/cartoon-nope-sound.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const messages = [
+      "Vanshita, you’re my favorite thought every day 💭❤️",
+      "If smiles were stars, you’d be my entire sky ✨",
+      "I still get butterflies because of you 🦋",
+      "Every love song makes sense because of you 🎶💖",
+      "You make ordinary days feel special 😌",
+      "I’m really lucky to have you ❤️"
+    ];
+
+    function newMessage() {
+      const msg = messages[Math.floor(Math.random() * messages.length)];
+      document.getElementById("message").innerText = msg;
+    }
+
+    function runAway() {
+      const noBtn = document.getElementById("noBtn");
+      const card = document.querySelector(".card");
+      const sound = document.getElementById("noSound");
+
+      sound.currentTime = 0;
+      sound.play();
+
+      const maxX = card.offsetWidth - noBtn.offsetWidth;
+      const maxY = card.offsetHeight - noBtn.offsetHeight;
+
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+
+      noBtn.style.left = randomX + "px";
+      noBtn.style.top = randomY + "px";
+    }
+
+    function valentine() {
+      document.body.innerHTML = `
+        <div style="
+          text-align:center;
+          color:white;
+          padding:40px;
+          animation: pop 1s ease;
+        ">
+          <h1 style="font-size:42px;">She Said YES 💖</h1>
+
+          <p style="font-size:22px; line-height:1.6;">
+            Vanshita, you just made my heart very happy ❤️<br/>
+            Every day feels special with you.
+          </p>
+
+          <p style="font-size:20px; margin-top:30px;">
+            Forever yours,<br/>
+            <strong>Vikash ❤️</strong>
+          </p>
+        </div>
+      `;
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 22 + 14 + "px";
+      heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }
+
+    setInterval(createHeart, 280);
+  </script>
+
+</body>
+</html>
